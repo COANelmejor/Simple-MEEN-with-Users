@@ -16,7 +16,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session);
 
 var mongoose = require('mongoose');
-var userDB = require('./models/userModel');
+var UserModel = require('./models/UserModel');
 var autoIncrement = require('mongoose-auto-increment');
 
 mongoose.connect(`${process.env.MONGOSERVER}/${process.env.DB}?retryWrites=true&w=majority`, {
@@ -29,7 +29,7 @@ autoIncrement.initialize(db);
 
 passport.use(new Strategy(
   function (username, password, callback) {
-    userDB.findOne({
+    UserModel.findOne({
       username: username.toLowerCase()
     }, function (err, user) {
       if (err) {
@@ -50,7 +50,7 @@ passport.serializeUser(function (user, callback) {
 });
 
 passport.deserializeUser(function (id, callback) {
-  userDB.findById(id, "-password -salt", function (err, user) {
+  UserModel.findById(id, "-password -salt", function (err, user) {
     if (err) {
       return callback(err);
     }
