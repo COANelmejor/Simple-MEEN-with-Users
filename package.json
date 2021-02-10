@@ -1,16 +1,30 @@
 {
   "name": "simple-meen-with-users",
-  "version": "0.0.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "set DB=demodb&& set MONGOSERVER=mongodb://127.0.0.1:27017&& node ./bin/www",
+    "nodemon": "set DB=demodb&& set MONGOSERVER=mongodb://127.0.0.1:27017&& nodemon ./bin/www"
   },
   "dependencies": {
+    "async": "^3.2.0",
+    "connect-mongo": "^3.2.0",
     "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
+    "express-session": "^1.17.0",
     "http-errors": "~1.6.3",
-    "morgan": "~1.9.1"
+    "libphonenumber-js": "^1.8.4",
+    "moment": "^2.24.0",
+    "mongoose": "^5.8.11",
+    "mongoose-auto-increment": "^5.0.1",
+    "mongoose-autopopulate": "^0.12.0",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.2",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "uuid": "^3.4.0"
   }
 }
