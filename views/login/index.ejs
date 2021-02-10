@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/login.css">
 </head>
+
 <body>
   <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
     <div class="container">
@@ -24,21 +26,22 @@
                 <img src="/images/logo.svg" alt="logo" class="logo">
               </div>
               <p class="login-card-description">Ingresa con tu usuario</p>
-                  <div class="form-group">
-                    <label for="email" class="sr-only">Correo</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Dirección de correo electrónico">
-                  </div>
-                  <div class="form-group mb-4">
-                    <label for="password" class="sr-only">Contraseña</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="***********">
-                  </div>
-                  <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Ingresar">
-                <a href="#!" class="forgot-password-link">¿Olvidaste tu contraseña?</a>
-                <p class="login-card-footer-text">¿No tienes una cuenta? <a href="#!" class="text-reset">¡Regístrate aquí!</a></p>
-                <nav class="login-card-footer-nav">
-                  <a href="#!">Términos de uso.</a>
-                  <a href="#!">Política de Privacidad</a>
-                </nav>
+              <div class="form-group">
+                <label for="username" class="sr-only">Usuario</label>
+                <input type="email" name="username" id="username" class="form-control" placeholder="Usuario">
+              </div>
+              <div class="form-group mb-4">
+                <label for="password" class="sr-only">Contraseña</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="***********">
+              </div>
+              <button id="iniciar_sesion" class="btn btn-block login-btn mb-4">Ingresar</button>
+              <a href="#!" class="forgot-password-link">¿Olvidaste tu contraseña?</a>
+              <p class="login-card-footer-text">¿No tienes una cuenta? <a href="#!" class="text-reset">¡Regístrate
+                  aquí!</a></p>
+              <nav class="login-card-footer-nav">
+                <a href="#!">Términos de uso.</a>
+                <a href="#!">Política de Privacidad</a>
+              </nav>
             </div>
           </div>
         </div>
@@ -74,5 +77,31 @@
   <script src="/jquery/jquery-3.4.1.min.js"></script>
   <script src="/jquery/popper.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#iniciar_sesion').click(function () {
+        let user = $('#username').val()
+        let password = String($('#password').val())
+
+        let data = {
+          user: user,
+          password: password
+        }
+
+        $.ajax({
+          url: '/api/login',
+          method: 'POST',
+          data: data,
+          success: function () {
+            console.log('Todo bien, todo correcto');
+          },
+          error: function (response) {
+          console.log(response);
+          }
+        });
+      })
+    })
+  </script>
 </body>
+
 </html>
