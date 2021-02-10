@@ -19,9 +19,17 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    email:{
+    // email:{
+    //     type: String,
+    //     required: false
+    // },
+    tipo: {
         type: String,
-        requires: false
+        required: true,
+        enum: [
+            'administrador', 
+            'empleado'
+        ]
     }
 }, { strict: false })
 
