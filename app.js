@@ -4,7 +4,6 @@ const logger = require('morgan');
 const createError = require('http-errors');
 const cors = require('cors')
 const path = require('path');
-const moment = require('moment');
 
 var userTools = require('./lib/userTools');
 
@@ -68,8 +67,14 @@ app.use(express.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
+
+// Archivos estaticos que estarán en la carpeta public
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Declaración de modulos de NPM para usarse en frontend
+app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap')));
+
+// Permitir Cross-Origin Resource Sharing
 app.use(cors());
 
 app.use(session({
@@ -84,6 +89,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.locals.libphonenumberjs = require('libphonenumber-js')
+app.locals.moment = require('moment')
 
 // Rutas para el API
 require('./api')(app)
